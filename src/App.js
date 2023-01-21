@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
-  
+import * as bootstrap from 'bootstrap';  
 
 
 function App ( ) { //TestIt
@@ -53,7 +53,7 @@ function App ( ) { //TestIt
       //mode: 'no-cors',
       body: formData2
   };
-
+  const carousel = new bootstrap.Carousel('carouselExampleFade');
   const respJson = fetch('http://127.0.0.1:8000/upload', requestOptions)
   .then(response => response.json())
   .then(img => (setImgPaint(img.image_paint.first), setImgPencil(img.image_pencil.first)))
@@ -67,12 +67,12 @@ function App ( ) { //TestIt
       <form onSubmit={handleSubmit} id='form-enter'>
         <fieldset>
           <label>Email:</label>
-          <input name="email" type="email" onChange={changeHandlerEmail} />
+          <input name="email" type="email" onChange={changeHandlerEmail} placeholder="Введите email"/>
         </fieldset>
         <br/>
         <fieldset>
           <input name="image" type="file" onChange={changeHandler} accept=".jpeg, .png, .jpg"/>
-          {isFilePicked ? <img src={URL.createObjectURL(selectedFile)} height='64' width='64'/> : <img src='https://mag-efir.com/upload/iblock/af7/af70208cea7627be119710fe335cd6f3.jpg' height='64' width='64' />}
+          {isFilePicked ? <img src={URL.createObjectURL(selectedFile)} height='64' width='64'/> : <img src='https://images-ext-2.discordapp.net/external/V0MkfdHqX_QPLxSgKofC2RNFWl_hWyBWmk9veU4isfI/https/a.allegroimg.com/original/110735/d9b7ac00438cb5173d7c09f20f4d/SONDA-LAMBDA-BOSCH-0-258-030-290-0258030290' height='64' width='64' />}
         </fieldset>
         <Button type="submit" onClick={changeHandleClick}>Отправить</Button>
       </form>
